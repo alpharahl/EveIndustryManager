@@ -10,7 +10,8 @@
     "electron:build": "vue-cli-service electron:build",
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
-    "postuninstall": "electron-builder install-app-deps"
+    "postuninstall": "electron-builder install-app-deps",
+    "dev": "concurrently --kill-others \"yarn serve:server\" \"yarn electron:serve\""
   },
   "main": "background.js",
   "dependencies": {
@@ -28,6 +29,7 @@
     "@vue/cli-plugin-eslint": "^4.3.0",
     "@vue/cli-service": "^4.3.0",
     "babel-eslint": "^10.1.0",
+    "concurrently": "^5.1.0",
     "electron": "^6.0.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",

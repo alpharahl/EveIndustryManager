@@ -7,12 +7,22 @@ yarn install
 
 ### Compiles and hot-reloads for development
 ```
-yarn serve
+yarn electron:serve
+```
+
+### Run the backend server
+```
+yarn serve:server
+```
+
+### Run both the electron and backend server in one command
+```
+yarn dev
 ```
 
 ### Compiles and minifies for production
 ```
-yarn build
+yarn electron:build
 ```
 
 ### Lints and fixes files
