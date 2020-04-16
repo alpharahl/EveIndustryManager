@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <Login/>
+    <Login v-if="loggedIn === false"/>
+    <router-view/>
   </div>
 </template>
 
@@ -11,9 +12,18 @@ import Login from "@/components/Login";
 export default {
   name: 'App',
   components: {Login},
+  data(){
+    return {
+      loggedIn: null
+    }
+  },
+
   mounted(){
-    // eslint-disable-next-line no-debugger
-    debugger;
+    if (this.$route.query.code){
+      this.loggedIn = true;
+    } else {
+      this.loggedIn = false;
+    }
   }
 }
 </script>
