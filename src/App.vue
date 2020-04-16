@@ -18,9 +18,17 @@ export default {
     }
   },
 
+  methods: {
+    login(){
+      fetch(`http://localhost:3000/login/${this.$route.query.code}`)
+    }
+  },
+
+
   mounted(){
     if (this.$route.query.code){
       this.loggedIn = true;
+      this.login();
     } else {
       this.loggedIn = false;
     }
