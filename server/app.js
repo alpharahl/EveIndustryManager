@@ -12,27 +12,24 @@ app.use(cors());
 
 // const https = require('https')
 const axios = require('axios');
+const qs = require('querystring');
 
 const loginToEve = async (code) => {
-  const encodedString = new Buffer.from(code + ':' + 'sqMWI2O8J4LTrMYkhtE7JwZgGWpwbkldZIRs1iOY').toString('base64')
+  const encodedString = new Buffer.from("eb2f857d6cd54c2fb4b9d8462f8920fa" + ':' + 'sqMWI2O8J4LTrMYkhtE7JwZgGWpwbkldZIRs1iOY').toString('base64')
   console.log(code, encodedString)
-  var clientOptions = {
-    url: 'login.eveonline.com/v2/oauth/token',
+  const data = {
+    grant_type: 'authorization_code',
+    code: code
+  }
+  const config = {
     headers: {
       'Authorization': `Basic ${encodedString}`,
       'Content-Type': 'application/x-www-form-urlencoded',
       Host: 'login.eveonline.com'
     }
   }
-  // https.request(clientOptions, (res) => {
-  //   return res;
-  // })
-  await axios({
-    url: 'https://login.eveonline.com/v2/oauth/token',
-    method: 'POST',
-    headers: clientOptions.headers
-  })
-    .then(response => console.log(response))
+  const url = 'https://login.eveonline.com/v2/oauth/token'
+  await axios.post(url, qs.stringify(data), config).then(response => console.log(response))
     .catch(e => console.log(e))
 }
 
